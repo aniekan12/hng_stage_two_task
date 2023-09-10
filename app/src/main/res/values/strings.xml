@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Hng Second Task</string>
+    <string name="cv_home_screen">CV Home Screen</string>
+    <string name="cv_edit_screen">CV Edit Screen</string>
 </resources>

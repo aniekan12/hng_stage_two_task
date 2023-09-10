@@ -1,4 +1,4 @@
-package com.ani.hngsecondtask.ui.theme
+package com.ani.hngfirsttask.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
