@@ -2,4 +2,8 @@
     <string name="app_name">Hng Second Task</string>
     <string name="cv_home_screen">CV Home Screen</string>
     <string name="cv_edit_screen">CV Edit Screen</string>
+    <string name="slack_name">Aniekan-abasi Godwin Akpakpan</string>
+    <string name="slack_username"> aniekan akpakpan</string>
+    <string name="username">Slack Username: </string>
+    <string name="personal_bio">Personal Bio</string>
 </resources>
