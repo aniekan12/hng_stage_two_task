@@ -5,5 +5,6 @@
     <string name="slack_name">Aniekan-abasi Godwin Akpakpan</string>
     <string name="slack_username"> aniekan akpakpan</string>
     <string name="username">Slack Username: </string>
+    <string name="edit">Edit </string>
     <string name="personal_bio">Personal Bio</string>
 </resources>

@@ -14,29 +14,35 @@ import com.ani.hngfirsttask.ui.theme.Typography
 
 
 @Composable
-fun Heading1Text(text: Int, textAlign: TextAlign, padding: Int? = 0, modifier: Modifier) {
+fun Heading1Text(text: String, textAlign: TextAlign, padding: Int? = 0, modifier: Modifier) {
     Text(
         textAlign = textAlign,
-        text = stringResource(text),
+        text = text,
         style = Typography.h3.copy(fontWeight = FontWeight.Bold),
         modifier = modifier,
     )
 }
 
 @Composable
-fun Heading4Text(text: Int) {
+fun Heading4Text(text: String, modifier: Modifier) {
     Text(
-        text = stringResource(text),
-        style = Typography.h6.copy(),
-//        modifier = modifier,
+        text = text,
+        style = Typography.h6.copy(fontSize = 18.sp),
+        modifier = modifier,
     )
 }
 
 @Composable
-fun BodyText(text: String, fontWeight: FontWeight, modifier: Modifier = Modifier.padding()) {
+fun BodyText(
+    text: String,
+    textAlign: TextAlign,
+    fontWeight: FontWeight,
+    modifier: Modifier = Modifier.padding()
+) {
     Text(
         modifier = modifier,
+        textAlign = textAlign,
         text = text,
-        style = Typography.body1.copy(fontWeight = fontWeight),
+        style = Typography.body1.copy(fontWeight = fontWeight, fontSize = 16.sp),
     )
 }
