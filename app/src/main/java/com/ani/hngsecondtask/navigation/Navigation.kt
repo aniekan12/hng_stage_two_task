@@ -3,16 +3,19 @@ package com.ani.hngfirsttask.navigation
 import CVEditScreen
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ani.hngfirsttask.ui.CVHomeScreen
+import com.ani.hngsecondtask.view_model.CVViewModel
 
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
+    val viewModel = viewModel<CVViewModel>()
 
     NavHost(
         navController = navController,
@@ -21,36 +24,18 @@ fun Navigation() {
         composable(
             route = Screen.HomeScreen.route,
         ) {
-            CVHomeScreen(navController = navController)
+
+            CVHomeScreen(
+                viewModel = viewModel,
+                navController = navController,
+            )
         }
         composable(
             route = Screen.EditScreen.route,
-//            arguments = listOf(
-//                navArgument("fullName") {
-//                    type = NavType.StringType
-//                },
-//                navArgument("slackName") {
-//                    type = NavType.StringType
-//                },
-//                navArgument("gitName") {
-//                    type = NavType.StringType
-//                },
-//                navArgument("personalBio") {
-//                    type = NavType.StringType
-//                }
-//            )
         ) {
-//            val fullName = it.arguments?.getString("fullName") ?: ""
-//            val slackName = it.arguments?.getString("slackName") ?: ""
-//            val gitName = it.arguments?.getString("gitName") ?: ""
-//            val personalBio = it.arguments?.getString("personalBio") ?: ""
-
             CVEditScreen(
-//                fullName = fullName,
-//                slackName = slackName,
-//                gitHubName = gitName,
-//                personalBio = personalBio,
-                navController = navController
+                navController = navController,
+                viewModel = viewModel
             )
             Log.d("navigation", "navigated")
         }

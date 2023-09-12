@@ -6,9 +6,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,9 +22,25 @@ import com.ani.hngsecondtask.view_model.CVViewModel
 
 @Composable
 fun CVEditScreen(
+    viewModel: CVViewModel,
     navController: NavController
 ) {
-    val viewModel = viewModel<CVViewModel>()
+    val user = viewModel.user
+
+    var editFullName by remember {
+        mutableStateOf(user.fullName)
+    }
+    var editSlackName by remember {
+        mutableStateOf(user.slackName)
+    }
+
+    var editGitName by remember {
+        mutableStateOf(user.gitName)
+    }
+
+    var editPersonalBio by remember {
+        mutableStateOf(user.personalBio)
+    }
 
 
     Scaffold(
@@ -49,9 +63,9 @@ fun CVEditScreen(
                 label = {
                     Text(text = "Full Name")
                 },
-                value = viewModel.firstNameAndLastName.value,
-                onValueChange = { text ->
-                    viewModel.firstNameAndLastName.value = text
+                value = editFullName,
+                onValueChange = {
+                    editFullName = it
                 })
 
             OutlinedTextField(
@@ -61,9 +75,9 @@ fun CVEditScreen(
                 label = {
                     Text(text = "Slack Name")
                 },
-                value = viewModel.slackName.value,
-                onValueChange = { text ->
-                    viewModel.slackName.value = text
+                value = editSlackName,
+                onValueChange = {
+                    editSlackName = it
                 })
 
             OutlinedTextField(
@@ -73,9 +87,9 @@ fun CVEditScreen(
                 label = {
                     Text(text = "Github Name")
                 },
-                value = viewModel.githubUserName.value,
-                onValueChange = { text ->
-                    viewModel.githubUserName.value = text
+                value = editGitName,
+                onValueChange = {
+                    editGitName = it
                 })
 
             OutlinedTextField(
@@ -86,13 +100,21 @@ fun CVEditScreen(
                     Text(text = "Personal Bio")
                 },
                 maxLines = 8,
-                value = viewModel.personalBio.value,
-                onValueChange = { text ->
-                    viewModel.personalBio.value = text
+                value = editPersonalBio,
+                onValueChange = {
+                    editPersonalBio = it
                 })
 
             AppButton(onClick = {
-                navController.popBackStack(route = Screen.HomeScreen.route + "")
+                user.fullName = editFullName
+                user.slackName = editSlackName
+                user.gitName = editGitName
+                user.personalBio = editPersonalBio
+                navController.popBackStack(
+                    Screen.HomeScreen.route,
+                    inclusive = false
+                )
+
             }, buttonText = R.string.edit, padding = 20)
         }
     }

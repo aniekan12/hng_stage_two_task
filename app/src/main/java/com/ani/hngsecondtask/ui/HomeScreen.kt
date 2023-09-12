@@ -18,6 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import com.ani.hngfirsttask.composables.*
 import com.ani.hngfirsttask.navigation.Screen
 import com.ani.hngfirsttask.ui.theme.Black
@@ -25,21 +27,22 @@ import com.ani.hngsecondtask.R
 import com.ani.hngsecondtask.view_model.CVViewModel
 
 @Composable
-fun CVHomeScreen(navController: NavController) {
+fun CVHomeScreen(viewModel:CVViewModel, navController: NavController) {
     Scaffold(
         topBar = {
             AppBar(text = R.string.cv_home_screen, isAnotherScreen = false) {}
         },
     ) {
-        Content(navController = navController)
+        Content(navController = navController, viewModel = viewModel)
     }
 
 }
 
 @Composable
 
-fun Content(navController: NavController) {
-    val myViewModel = viewModel<CVViewModel>()
+fun Content(viewModel:CVViewModel, navController: NavController) {
+    val user = viewModel.user
+
     Box(
         modifier = Modifier
             .padding(all = 10.dp)
@@ -59,6 +62,7 @@ fun Content(navController: NavController) {
             ) {
                 IconButton(onClick = {
                     navController.navigate(route = Screen.EditScreen.route)
+
                 }) {
                     Icon(Icons.Filled.Edit, contentDescription = "Edit Button")
                 }
@@ -67,7 +71,7 @@ fun Content(navController: NavController) {
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Heading1Text(
-                    text = myViewModel.firstNameAndLastName.value,
+                    text = user.fullName,
                     padding = 10,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(top = 0.dp, bottom = 10.dp)
@@ -88,14 +92,14 @@ fun Content(navController: NavController) {
                 )
                 BodyText(
                     fontWeight = FontWeight.W400,
-                    text = myViewModel.slackName.value,
+                    text = user.slackName,
                     textAlign = TextAlign.Justify,
                     modifier = Modifier.padding(horizontal = 5.dp)
                 )
             }
 
             Row(
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 10.dp)
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.github),
@@ -108,7 +112,7 @@ fun Content(navController: NavController) {
 
                 BodyText(
                     fontWeight = FontWeight.W400,
-                    text = myViewModel.githubUserName.value,
+                    text = user.gitName,
                     textAlign = TextAlign.Start,
                     modifier = Modifier.padding(vertical = 5.dp, horizontal = 4.dp)
                 )
@@ -131,32 +135,16 @@ fun Content(navController: NavController) {
 
                 BodyText(
                     textAlign = TextAlign.Justify,
-                    text = myViewModel.personalBio.value,
+                    text = user.personalBio,
                     fontWeight = FontWeight.W200,
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp)
                 )
             }
 
 
-//            AppButton(onClick = {
-//                navController.navigate(Screen.WebViewScreen.route)
-//            }, buttonText = R.string.open_github, padding = 10)
         }
 
     }
-
-
-//
-//        Column() {
-//            Heading1Text(
-//                text = R.string.personal_bio,
-//                textAlign = TextAlign.Start,
-//                modifier = Modifier.padding(start = 8.dp)
-//            )
-//        }
-//            AppButton(onClick = {
-//                navController.navigate(Screen.WebViewScreen.route)
-//            }, buttonText = R.string.open_github, padding = 10)
 
 
 }
