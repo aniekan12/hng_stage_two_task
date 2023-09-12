@@ -17,6 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.ani.hngfirsttask.composables.AppBar
 import com.ani.hngfirsttask.composables.AppButton
+import com.ani.hngfirsttask.navigation.Screen
 import com.ani.hngsecondtask.R
 import com.ani.hngsecondtask.view_model.CVViewModel
 
@@ -29,7 +30,7 @@ fun CVEditScreen(
 
 
     Scaffold(
-        modifier = Modifier.fillMaxWidth(),
+
         topBar = {
             AppBar(text = R.string.cv_edit_screen, isAnotherScreen = true, onBackButtonPressed = {
                 navController.navigateUp()
@@ -37,9 +38,14 @@ fun CVEditScreen(
         },
     ) {
         Column(
-            modifier = Modifier.padding(all = 10.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 10.dp)
         ) {
             OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
                 label = {
                     Text(text = "Full Name")
                 },
@@ -49,6 +55,9 @@ fun CVEditScreen(
                 })
 
             OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
                 label = {
                     Text(text = "Slack Name")
                 },
@@ -58,8 +67,11 @@ fun CVEditScreen(
                 })
 
             OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
                 label = {
-                    Text(text = "Slack Name")
+                    Text(text = "Github Name")
                 },
                 value = viewModel.githubUserName.value,
                 onValueChange = { text ->
@@ -67,6 +79,9 @@ fun CVEditScreen(
                 })
 
             OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
                 label = {
                     Text(text = "Personal Bio")
                 },
@@ -76,7 +91,9 @@ fun CVEditScreen(
                     viewModel.personalBio.value = text
                 })
 
-            AppButton(onClick = { /*TODO*/ }, buttonText = R.string.edit, padding = 10)
+            AppButton(onClick = {
+                navController.popBackStack(route = Screen.HomeScreen.route + "")
+            }, buttonText = R.string.edit, padding = 20)
         }
     }
 }

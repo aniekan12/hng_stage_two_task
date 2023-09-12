@@ -1,5 +1,6 @@
 package com.ani.hngfirsttask.composables
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -27,6 +28,7 @@ fun AppButton(onClick: () -> Unit, buttonText: Int, padding: Int) {
         ),
         shape = RoundedCornerShape(60),
         modifier = Modifier
+            .fillMaxWidth()
             .padding(top = padding.dp)
             .width(200.dp)
             .height(50.dp)
